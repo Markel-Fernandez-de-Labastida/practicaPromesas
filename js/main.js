@@ -6,15 +6,22 @@
     5. llamadas a las funciones
 */
 
+const formulario = document.querySelector("#formulario");
 
+formulario.addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log(event.target.nombre.value);
 
-
+})
 
 
 const getAPI = () => {
+    const datosAPI = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const {nombre, correoElectronico} = datosAPI;
+
 
 }
 
-const setAPI = () => {
-    
+const setAPI = (arrayUsuarios) => {
+    localStorage.setItem("usuarios", arrayUsuarios);
 }
