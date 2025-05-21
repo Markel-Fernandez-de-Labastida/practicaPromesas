@@ -6,3 +6,15 @@
     5. llamadas a las funciones
 */
 
+
+
+
+
+
+const getAPI = () => {
+
+}
+
+const setAPI = () => {
+    
+}
