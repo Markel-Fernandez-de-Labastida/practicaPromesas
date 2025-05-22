@@ -43,7 +43,7 @@ formulario.addEventListener("submit", (event) => {
         return showUsers(respuesta);
     })
     .catch((error) => {
-        console.log(error)
+        console.log(error);
 
     })
 
@@ -66,6 +66,9 @@ const showUsers = (usuario) => {
 
 }
 
+const showError = (mensaje) => {
+
+}
 
 const getAPI = (nombreUsuario) => {
 
@@ -76,7 +79,7 @@ if (datosAPI != []){
     const nombre = datosAPI.find((item) => item.nombre === nombreUsuario);
     console.log("item encontrado: ", nombre)
     if (nombre) resolve(nombre);
-    else reject(`El alumno con el nombre ${nombre} no existe`);
+    else reject(`El alumno con el nombre ${nombreUsuario} no existe`);
 }
 })
 
