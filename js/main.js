@@ -40,28 +40,31 @@ formulario.addEventListener("submit", (event) => {
     getAPI(nombreUsuario)
     .then((respuesta) => {
         console.log(respuesta);
-        return 
+        return showUsers();
     })
     .catch((error) => {console.log(error)})
 
 })
 
-
- const getAPI = (nombreUsuario) => {
+const showUsers = () => {
     
-    const datosAPI = JSON.parse(localStorage.getItem("usuarios")) || [];
-    const promesa = new Promise((resolve, reject) => {
-    setTimeout(() => {
-    if (datosAPI != []){
-        const nombre = datosAPI.find((item) => item.nombre === nombreUsuario)?.nombre;
-        console.log("nombre encontrado: ", nombre)
-        if (nombre) resolve(nombre);
-        else reject(`El alumno con el nombre ${nombre} no existe`);
-    }
-    })
+}
 
-    }, 1000);
-    return promesa;
+const getAPI = (nombreUsuario) => {
+
+const datosAPI = JSON.parse(localStorage.getItem("usuarios")) || [];
+const promesa = new Promise((resolve, reject) => {
+setTimeout(() => {
+if (datosAPI != []){
+    const nombre = datosAPI.find((item) => item.nombre === nombreUsuario)?.nombre;
+    console.log("nombre encontrado: ", nombre)
+    if (nombre) resolve(nombre);
+    else reject(`El alumno con el nombre ${nombre} no existe`);
+}
+})
+
+}, 1000);
+return promesa;
 } 
 
 
