@@ -6,8 +6,10 @@
     5. llamadas a las funciones
 */
 
+// variable para usar el evento
 const formulario = document.querySelector("#formulario");
 
+// Array de usuarios
 let arrAPI = [
     {
         id: 1,
@@ -32,7 +34,7 @@ let arrAPI = [
 ]
 
 
-
+// Evento para recoger los datos introducidos por el usuario cuando se pulse el boton submit
 formulario.addEventListener("submit", (event) => {
     event.preventDefault();
     const nombreUsuario = event.target.nombre.value;
@@ -50,7 +52,10 @@ formulario.addEventListener("submit", (event) => {
     })
 
 })
-
+/**
+ * 
+ * @param {object} usuario Recoje el usuario y pinta los datos
+ */
 const showUsers = (usuario) => {
     const tabla = document.querySelector("#tabla");
     const bodyTabla = document.querySelector("#tablaBody");
@@ -68,7 +73,10 @@ const showUsers = (usuario) => {
     bodyTabla.append(tr);
 
 }
-
+/**
+ * 
+ * @param {String} mensaje Muestra el mensaje de error cuando el nombre introducido no exista
+ */
 const showError = (mensaje) => {
     
     const mostrarError = document.querySelector("#mostrarError");
@@ -79,6 +87,11 @@ const showError = (mensaje) => {
     mostrarError.append(mensajeError);
 }
 
+/**
+ * 
+ * @param {String} nombreUsuario Nombre que el usuario ha introducido
+ * @returns Retorna la promesa
+ */
 const getAPI = (nombreUsuario) => {
 
 const datosAPI = JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -96,7 +109,10 @@ if (datosAPI != []){
 return promesa;
 } 
 
-
+/**
+ * 
+ * @param {Array} arrayUsuarios Recibe los usuarios para almacenarlos en el Local Storage
+ */
 const setAPI = (arrayUsuarios) => {
     if (arrayUsuarios == []) arrayUsuarios = arrAPI;
     localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
