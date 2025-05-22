@@ -39,12 +39,14 @@ formulario.addEventListener("submit", (event) => {
     console.log("Nombre introducido: ",nombreUsuario)
     getAPI(nombreUsuario)
     .then((respuesta) => {
-        console.log(respuesta);
+        //console.log(respuesta);
+        const mostrarError = document.querySelector("#mostrarError");
+        mostrarError.innerHTML = "";
         return showUsers(respuesta);
     })
     .catch((error) => {
-        console.log(error);
-
+        //console.log(error);
+        return showError(error);
     })
 
 })
@@ -52,6 +54,7 @@ formulario.addEventListener("submit", (event) => {
 const showUsers = (usuario) => {
     const tabla = document.querySelector("#tabla");
     const bodyTabla = document.querySelector("#tablaBody");
+    bodyTabla.innerHTML = "";
     const tr = document.createElement("TR");
     const tdId = document.createElement("TD");
     const tdNombre = document.createElement("TD");
@@ -67,7 +70,13 @@ const showUsers = (usuario) => {
 }
 
 const showError = (mensaje) => {
+    
+    const mostrarError = document.querySelector("#mostrarError");
+    mostrarError.innerHTML = "";
+    const mensajeError = document.createElement("P");
+    mensajeError.innerHTML = mensaje;
 
+    mostrarError.append(mensajeError);
 }
 
 const getAPI = (nombreUsuario) => {
@@ -77,7 +86,7 @@ const promesa = new Promise((resolve, reject) => {
 setTimeout(() => {
 if (datosAPI != []){
     const nombre = datosAPI.find((item) => item.nombre === nombreUsuario);
-    console.log("item encontrado: ", nombre)
+    //console.log("item encontrado: ", nombre)
     if (nombre) resolve(nombre);
     else reject(`El alumno con el nombre ${nombreUsuario} no existe`);
 }
