@@ -32,21 +32,24 @@ let arrAPI = [
 ]
 
 
+
 formulario.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log(event.target.nombre.value);
+    const nombreUsuario = event.target.nombre.value;
+    console.log("Nombre introducido: ",nombreUsuario)
+
 
 })
 
 
-const getAPI = () => {
-    const datosAPI = JSON.parse(localStorage.getItem("usuarios")) || [];
-    const {nombre, correoElectronico} = datosAPI;
 
 
-}
+
+
 
 const setAPI = (arrayUsuarios) => {
     if (arrayUsuarios == []) arrayUsuarios = arrAPI;
-    localStorage.setItem("usuarios", arrayUsuarios);
+    localStorage.setItem("usuarios", JSON.stringify(arrayUsuarios));
 }
+
+setAPI(arrAPI);
