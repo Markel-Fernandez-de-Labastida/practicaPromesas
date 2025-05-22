@@ -37,14 +37,32 @@ formulario.addEventListener("submit", (event) => {
     event.preventDefault();
     const nombreUsuario = event.target.nombre.value;
     console.log("Nombre introducido: ",nombreUsuario)
-
+    getAPI(nombreUsuario)
+    .then((respuesta) => {
+        console.log(respuesta);
+        return 
+    })
+    .catch((error) => {console.log(error)})
 
 })
 
 
+ const getAPI = (nombreUsuario) => {
+    
+    const datosAPI = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const promesa = new Promise((resolve, reject) => {
+    setTimeout(() => {
+    if (datosAPI != []){
+        const nombre = datosAPI.find((item) => item.nombre === nombreUsuario)?.nombre;
+        console.log("nombre encontrado: ", nombre)
+        if (nombre) resolve(nombre);
+        else reject(`El alumno con el nombre ${nombre} no existe`);
+    }
+    })
 
-
-
+    }, 1000);
+    return promesa;
+} 
 
 
 const setAPI = (arrayUsuarios) => {
